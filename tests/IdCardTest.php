@@ -20,4 +20,34 @@ class IdCardTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($response, null);
     }
+
+    public function test_get_idcard()
+    {
+        $response = $this->client->call('idcard', [
+            'inputs' => [
+                0 => [
+                    'image' => [
+                        'dataType' => 50,
+                        'dataValue' => base64_encode(md5(uniqid())),
+                    ],
+                    'configure' => [
+                        'dataType' => 50,
+                        'dataValue' => json_encode(['side' => 'face']), // 份证正面,
+                    ],
+                ],
+                1 => [
+                    'image' => [
+                        'dataType' => 50,
+                        'dataValue' => base64_encode(md5(uniqid())),
+                    ],
+                    'configure' => [
+                        'dataType' => 50,
+                        'dataValue' => json_encode(['side' => 'back']), // 身份证正反面,
+                    ],
+                ],
+            ]
+        ]);
+
+        $this->assertEquals($response, null);
+    }
 }
