@@ -31,7 +31,7 @@ class Request
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_FAILONERROR, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HEADER, true);
+        curl_setopt($ch, CURLOPT_HEADER, false); // 不返回头信息
 
         if (0 === strpos($url, "https://")) {
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -43,7 +43,12 @@ class Request
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         }
 
-        return curl_exec($ch);
+        $result =  curl_exec($ch);
+
+        curl_close($ch);
+
+        return json_decode($result, true);
+
     }
 
     public function curl($url, $querys, $method)
