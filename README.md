@@ -1,20 +1,13 @@
 ## 阿里云身份证验证接口
 
-- 添加一个repositories
-
-```php
-{
-  "type": "vcs",
-  "url": "git@git.lxi.me:package/aliyun-idcard-sdk.git"
-}
-```
+https://market.aliyun.com/products/57000002/cmapi012507.html?spm=5176.730005.0.0.Ajwufu#sku=yuncode650700000
+https://market.aliyun.com/products/57124001/cmapi010401.html?spm=5176.730005.0.0.Ajwufu#sku=yuncode440100000
 
 - composer require
 
 ```php
 composer require "lingxi/ali-idcard-sdk"
 ```
-
 
 - use
 
