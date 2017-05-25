@@ -4,8 +4,45 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "78c0e346b9cd65751e24d506a85e6ba4",
-    "packages": [],
+    "content-hash": "44e05f7851599fb6d9d9a26b7d35e395",
+    "packages": [
+        {
+            "name": "cszchen/citizenid",
+            "version": "v2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/imdgr/CitizenID.git",
+                "reference": "8f0d17d077efcaef7dda216b932fa358bf380bbb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/imdgr/CitizenID/8f0d17d077efcaef7dda216b932fa358bf380bbb.zip",
+                "reference": "8f0d17d077efcaef7dda216b932fa358bf380bbb",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.6.*"
+            },
+            "type": "extension",
+            "autoload": {
+                "psr-4": {
+                    "cszchen\\citizenid\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "cszchen",
+                    "email": "csz@soyhw.com"
+                }
+            ],
+            "description": "中国居民身份证号码信息验证",
+            "time": "2016-10-18T03:30:05+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "doctrine/instantiator",

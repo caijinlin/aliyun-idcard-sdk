@@ -32,7 +32,7 @@ class IdCardTest extends PHPUnit_Framework_TestCase
                     ],
                     'configure' => [
                         'dataType' => 50,
-                        'dataValue' => json_encode(['side' => 'face']), // 份证正面,
+                        'dataValue' => json_encode(['side' => 'face']), // 身份证正面,
                     ],
                 ],
                 1 => [

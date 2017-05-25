@@ -1,16 +1,66 @@
-## 造轮子模板
+## 阿里云身份证验证接口
 
-### step1
+- 添加一个repositories
 
-- git clone git@https://github.com/caijinlin/package-boilerplate.git
-- cd package-boilerplate
-- chmod 744 init.sh
-- ./init.sh package_name
+```php
+{
+  "type": "vcs",
+  "url": "git@git.lxi.me:package/aliyun-idcard-sdk.git"
+}
+```
 
-### step2
+- composer require
 
-- 修改composer.json
+```php
+composer require "lingxi/ali-idcard-sdk"
+```
 
-### step3
 
-- composer install
+- use
+
+```php
+
+use Lingxi\AliIdCard\Client as AliIdCardClient;
+$this->aliIdCardClient = new AliIdCardClient('your appcode');
+
+```
+
+接口例子：
+
+> 根据姓名和身份证号核对信息
+
+```php
+$this->aliIdCardClient->call('verify', [
+    'name'   => '你的姓名',
+    'cardno' => '你的身份证号',  
+]);  
+```
+
+> 根据身份证正反面照片查找身份证号
+
+```php
+$this->client->call('idcard', [
+    'inputs' => [
+        0 => [
+            'image' => [
+                'dataType' => 50,
+                'dataValue' => base64_encode('xxxx'), // 身份证正面图片的base64编码
+            ],
+            'configure' => [
+                'dataType' => 50,
+                'dataValue' => json_encode(['side' => 'face']), // 身份证正面,
+            ],
+        ],
+        1 => [
+            'image' => [
+                'dataType' => 50,
+                'dataValue' =>  base64_encode('xxxx'), // 身份证反面图片的base64编码
+            ],
+            'configure' => [
+                'dataType' => 50,
+                'dataValue' => json_encode(['side' => 'back']), // 身份证正反面,
+            ],
+        ],
+    ]
+]);
+```

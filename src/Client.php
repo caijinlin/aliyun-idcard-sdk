@@ -3,6 +3,7 @@
 namespace Lingxi\AliIdCard;
 
 use Lingxi\AliIdCard\Request as AliIdCardQuest;
+use cszchen\citizenid\Parser;
 
 class Client
 {
@@ -53,9 +54,17 @@ class Client
      */
     public function verify($params)
     {
-        /**
-         * @todo 检查身份证号
-         */
+        if (!$params['name'] || !$params['cardno']) {
+            throw new \Exception("参数不全");
+        }
+
+        $parser = new Parser();
+        $parser->setId($params['cardno']);
+            
+        if (!$parser->isValidate()) {
+            throw new \Exception("身份证号错误");
+        }
+
         return $this->_call('verify', $params);
     }
 
