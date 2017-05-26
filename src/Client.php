@@ -3,6 +3,7 @@
 namespace Lingxi\AliIdCard;
 
 use Lingxi\AliIdCard\Request as AliIdCardQuest;
+use Lingxi\AliIdCard\ApiResponse;
 use cszchen\citizenid\Parser;
 
 class Client
@@ -55,17 +56,24 @@ class Client
     public function verify($params)
     {
         if (!$params['name'] || !$params['cardno']) {
-            throw new \Exception("参数不全");
+            return ApiResponse::error('参数补全');
         }
 
         $parser = new Parser();
         $parser->setId($params['cardno']);
-            
+
         if (!$parser->isValidate()) {
-            throw new \Exception("身份证号错误");
+            return ApiResponse::error('身份证号码格式错误');
         }
 
-        return $this->_call('verify', $params);
+        $result = $this->_call('verify', $params);
+
+        if ($result['code'] == 1) {
+            return ApiResponse::success($result['data']['err'], $result['data']);
+        } else {
+            $err = $result['isok'] == 0 ? '查询失败' : '姓名与身份证号不匹配';
+            return ApiResponse::error($err, $result['data']);
+        }
     }
 
     /**
@@ -78,6 +86,8 @@ class Client
             $params = json_encode($params);
         }
 
-        return $this->_call('idcard', $params);
+        $result = $this->_call('idcard', $params);
+
+        return ApiResponse::success('', $result);
     }
 }
