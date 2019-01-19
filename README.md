@@ -32,7 +32,7 @@ $this->aliIdCardClient->call('verify', [
 > 根据身份证正反面照片查找身份证号
 
 ```php
-$this->client->call('idcard', [
+$this->aliIdCardClient->call('idcard', [
     'inputs' => [
         0 => [
             'image' => [
